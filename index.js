@@ -45,4 +45,8 @@ app.use('/api/user', userRouter)
 
 const POST = process.env.POST || 5000
 
+console.log("process.env.POST: ", process.env.POST);
+
+console.log("POST: ", POST);
+
 server.listen(POST, ()=> console.log(`Server started on port ${POST}`))
