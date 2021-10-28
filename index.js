@@ -43,6 +43,6 @@ app.use('/api/user', userRouter)
 // app.use('/api/notification', notificationRouter)
 
 
-const POST = process.env.POST || 5000
+const POST = process.env.POST || 3000
 
 server.listen(POST, ()=> console.log(`Server started on port ${POST}`))
