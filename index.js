@@ -12,6 +12,7 @@ const io = require('socket.io')(server)
 const authRouter = require('./routes/auth')
 const messRouter = require('./routes/messages')
 const userRouter = require('./routes/user')
+const roomRouter = require('./routes/room')
 // const notificationRouter = require('./routes/notification')
 
 io.on("connection", socket => {
@@ -40,6 +41,7 @@ app.use(express.json())
 app.use('/api/auth',authRouter)
 app.use('/api/message', messRouter)
 app.use('/api/user', userRouter)
+app.use('/api/room', roomRouter)
 // app.use('/api/notification', notificationRouter)
 
 

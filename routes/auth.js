@@ -6,6 +6,8 @@ const router = express.Router()
 const User = require('../models/User')
 
 const authController = require('../controllers/auth.controller')
+
+
 router.get('/', async(req, res) =>{
     return res.send("oke hello")
 })
