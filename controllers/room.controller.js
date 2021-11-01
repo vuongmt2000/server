@@ -50,18 +50,26 @@ module.exports.get_data = async(rep, res) =>{
 // @access public
 
 module.exports.intoRoom = async(req, res) =>{
-    const {_id} = req.body
+    const {_id, friend, avatar_room, messages_room, name_room, createAt_room} = req.body
 
     // check simple _id
     if(_id){
         return res.status(400).json({success: false, message :'Missing id room'})
     }
     try {
-        const room = Room.findOne({_id})
-        if(room){
-            return res.status(400).json({success: false, message :'Missing id room'})
+        let update_room = {
+            friend, 
+            avatar_room,
+            messages_room,
+            name_room,
+            createAt_room
         }
-        
+        updateRoom = await Room.findOneAndUpdate(_id, update_room, {new :true})
+        if(!updateRoom){
+            return res.status(400).json({success: false, message :'update failed'})
+        }
+        return res.status(200).json({success: true, message :'update success'})
+       
     } catch (error) {
         
     }

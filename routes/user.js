@@ -11,7 +11,7 @@ const User = require('../models/User')
 
 router.get('/', async(req, res) =>{
     try {
-        const user = await User.find().sort({createAt: -1}).populate('password');
+        const user = await User.find().sort({createAt: -1});
         return res.status(200).json({success: true, message: user})
     } catch (error) {
         console.log(error)
