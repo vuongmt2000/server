@@ -22,6 +22,10 @@ const RoomSchema = new Schema ({
     name_room: {
         type: String,
         required: true
+    },
+    update_room: {
+        type: Date,
+        default: Date.now
     }
 })
 

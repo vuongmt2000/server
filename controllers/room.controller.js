@@ -25,7 +25,7 @@ module.exports.create = async(req, res) => {
 
 module.exports.get_data = async(rep, res) =>{
     try {
-        const room = await Room.find().sort({createAt_room: -1});;
+        const room = await Room.find().sort({createAt_room: -1}).limit(5);;
         return res.status(200).json({success: true, message: room})
     } catch (error) {
         console.log(error)
