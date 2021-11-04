@@ -45,7 +45,7 @@ app.use('/api/room', roomRouter)
 // app.use('/api/notification', notificationRouter)
 
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 5000
 
 console.log("process.env.PORT: ", process.env.PORT);
 
