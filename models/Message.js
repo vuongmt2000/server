@@ -2,23 +2,19 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const MessageSchema = new Schema ({
-    from : {
-        type : int,
+    text : {
+        type : String,
         required: true,
-        // unique: true
     },
-    to: {
-        type: int,
-        required: true
-    },   
-    messages_text: {
-        type: Array,
-        required: true
-    },
-    createAt_room: {
+    createAt: {
         type: Date,
         default: Date.now
     },
+    user: {
+        _id : String,
+        name: String,
+        avatar: String
+    }
 })
 
-module.exports = mongoose.model('message', RoomSchema);
+module.exports = mongoose.model('message', MessageSchema);

@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const Message = require('./Message');
 const Schema = mongoose.Schema
-
 const RoomSchema = new Schema ({
     friend : {
         type : String,
@@ -16,7 +16,7 @@ const RoomSchema = new Schema ({
         default: Date.now
     },
     messages_room: {
-        type: Array,
+        type: Array(Message),
         default: []  
     },
     name_room: {
