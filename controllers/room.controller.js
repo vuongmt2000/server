@@ -57,10 +57,11 @@ module.exports.get_data = async(rep, res) =>{
 // @access public
 
 module.exports.intoRoom = async(req, res) =>{
-    const {_id, friend, avatar_room, messages_room, name_room, createAt_room} = req.body
+    const {_id, friend, avatar_room, messages_room, name_room, createAt_room, username_create} = req.body
+    console.log(`req.body`, req.body._id)
 
     // check simple _id
-    if(_id){
+    if(!_id){
         return res.status(400).json({success: false, message :'Missing id room'})
     }
     try {
@@ -69,9 +70,11 @@ module.exports.intoRoom = async(req, res) =>{
             avatar_room,
             messages_room,
             name_room,
-            createAt_room
+            createAt_room,
+            username_create
         }
         updateRoom = await Room.findOneAndUpdate(_id, update_room, {new :true})
+        console.log(`update`, updateRoom)
         if(!updateRoom){
             return res.status(400).json({success: false, message :'update failed'})
         }

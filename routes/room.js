@@ -10,8 +10,8 @@ const roomController = require('../controllers/room.controller')
 // @access public
 
 router.post('/create', roomController.create )
-router.post('/get_room', roomController.get_data)
-router.put('./update', roomController.intoRoom)
+router.get('/get_room', roomController.get_data)
+router.put('/update', roomController.intoRoom)
 
 
 module.exports = router
