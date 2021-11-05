@@ -7,8 +7,9 @@ const Room = require('../models/Room')
 // @disc create room
 // @access public
 module.exports.create = async(req, res) => {
-    const {avatar, friend, mess, name_room } = req.body
-    if(!avatar || !friend || !name_room ) {
+    const {avatar, friend, mess, name_room, username_create } = req.body
+    console.log(req.body)
+    if(!avatar || !friend || !name_room || !username_create) {
         return res
          .status(400)
          .json({success: false, message :'Missing avatar and/or name_room'})
@@ -19,7 +20,7 @@ module.exports.create = async(req, res) => {
         if(room){
             return res.status(200).json({success: false, message: 'created'})
         }
-        const newRoom = new Room({friend, avatar_room: avatar, messages_room: mess, name_room})
+        const newRoom = new Room({friend, avatar_room: avatar, messages_room: mess, name_room, username_create})
         newRoom.save()
         res.json({success: true, message: "create room success", createAt: Room.createAt})
     } catch (error) {
@@ -34,8 +35,14 @@ module.exports.create = async(req, res) => {
 // @access public
 
 module.exports.get_data = async(rep, res) =>{
+    const {username} = rep.body
     try {
-        const room = await Room.find().sort({createAt_room: -1}).limit(20);;
+        if(!username) {
+            return res
+            .status(400)
+            .json({success: false, message :'Missing  name_room'})
+        }
+        const room = await Room.find({friend: username} || {username_create: username}).sort({createAt_room: -1}).limit(20);;
         return res.status(200).json({success: true, message: room})
     } catch (error) {
         console.log(error)

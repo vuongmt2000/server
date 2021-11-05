@@ -25,6 +25,10 @@ const RoomSchema = new Schema ({
     update_room: {
         type: Date,
         default: Date.now
+    },
+    username_create: {
+        type: String, 
+        required: true
     }
 })
 
