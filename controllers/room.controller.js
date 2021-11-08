@@ -42,7 +42,7 @@ module.exports.get_data = async(rep, res) =>{
             .status(400)
             .json({success: false, message :'Missing  name_room'})
         }
-        const room = await Room.find({friend: username} || {username_create: username}).sort({createAt_room: -1}).limit(20);;
+        const room = await Room.find({ $or: [ { friend: username }, { username_create: username } ] } ).sort({createAt_room: -1}).limit(20);;
         return res.status(200).json({success: true, message: room})
     } catch (error) {
         console.log(error)

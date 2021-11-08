@@ -9,9 +9,20 @@ const User = require('../models/User')
 // @disc get user
 // @access public
 
-router.get('/', async(req, res) =>{
+router.post('/', async(req, res) =>{
+    const {username} = req.body
     try {
-        const user = await User.find().sort({createAt: -1});
+        if(!username) {
+            return res
+            .status(400)
+            .json({success: false, message :'Missing  username'})
+        }
+        const user = await User.find({username: {$ne: username}}).sort({createAt: -1});
+        if(!user){
+            return res
+            .status(400)
+            .json({success: false, message :'no username'})
+        }
         return res.status(200).json({success: true, message: user})
     } catch (error) {
         console.log(error)
