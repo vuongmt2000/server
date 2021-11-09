@@ -64,21 +64,12 @@ module.exports.intoRoom = async(req, res) =>{
         return res.status(400).json({success: false, message :'Missing id room'})
     }
     try {
-        // let update_room = {
-        //     friend, 
-        //     avatar_room,
-        //     messages_room,
-        //     name_room,
-        //     createAt_room,
-        //     username_create
-        // }
         if(messages_room) {
             updateRoom = await Room.findOneAndUpdate({_id}, {messages_room})
             if(!updateRoom){
                 return res.status(400).json({success: false, message :'update Message failed'})
             }
             return res.status(200).json({success: true, message :'update message success'})
-           
         }
         
     } catch (error) {

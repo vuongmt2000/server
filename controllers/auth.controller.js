@@ -25,7 +25,7 @@ module.exports.login = async(req, res) => {
         }
         // return token 
         const accessToken = jwt.sign({ userId: user._id }, 'asdfasdfasjdflkasjdlf')
-        res.json({ success: true, message: "Login user success", accessToken, avatar: user.avatar, createAt: user.createAt, username: user.username })
+        res.json({ success: true, message: "Login user success", accessToken, avatar: user.avatar, createAt: user.createAt, username: user.username, _id: user._id })
     } catch (error) {
         console.log(error)
         return res.status(500).json({ success: false, message: 'Internal server error' })
