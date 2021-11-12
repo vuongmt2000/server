@@ -76,3 +76,20 @@ module.exports.intoRoom = async(req, res) =>{
         
     }
 }
+
+
+module.exports.get_message = async(rep, res) =>{
+    const {_id} = rep.body
+    try {
+        if(!_id) {
+            return res
+            .status(400)
+            .json({success: false, message :'Missing  name_room'})
+        }
+        const mess = await Room.findOne({_id});;
+        return res.status(200).json({success: true, message: mess.messages_room})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({success: false, message: 'Internal server error'})
+    }
+}

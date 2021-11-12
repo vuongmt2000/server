@@ -12,6 +12,7 @@ const roomController = require('../controllers/room.controller')
 router.post('/create', roomController.create )
 router.post('/get_room', roomController.get_data)
 router.put('/update', roomController.intoRoom)
+router.post('/get_message',roomController.get_message)
 
 
 module.exports = router
